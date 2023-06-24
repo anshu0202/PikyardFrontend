@@ -1,0 +1,245 @@
+.col-md-4:nth-child(even) {
+    /* background: blue; */
+  }
+  .col-md-4:nth-child(odd) {
+    /* background: red; */
+  }
+  
+  .links {
+    color: #6c757d;
+    text-decoration: none;
+  }
+  .links:hover {
+    color: #ed8c2f;;
+    text-decoration: none;
+  }
+
+ 
+  
+  ::selection {
+    /* background: #fec503; */
+    background: #ed8c2f;
+    text-shadow: none;
+  }
+  
+  footer {
+    padding: 2rem 0;
+    background-color: #212529;
+    /* .container .row:not(:last-child) {
+        padding-bottom: 2rem;
+      } */
+  }
+
+
+ 
+  
+  .footer-column:not(:first-child) {
+    padding-top: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .footer-column:not(:first-child) {
+      padding-top: 0rem;
+    }
+  }
+  
+  .footer-column {
+    text-align: center;
+    /*border: red solid 1px;*/
+  }
+  
+  .footer-column .nav-item .nav-link {
+    padding: 0.1rem 0;
+  
+    color: aliceblue;
+  }
+  
+  .footer-column .nav-item span.nav-link {
+    color: #6c757d;
+    
+  }
+
+  
+  .footer-column .nav-item span.footer-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+  }
+  
+  .footer-column .nav-item .fas {
+    margin-right: 0.5rem;
+  }
+  
+  .footer-column ul {
+    display: inline-block;
+  }
+
+
+
+  
+  @media (min-width: 768px) {
+    .footer-column ul {
+      text-align: left;
+    }
+    /*border: yellow solid 1px;*/
+  }
+  
+  ul.social-buttons {
+    margin-bottom: 0;
+  }
+  
+  ul.social-buttons li a:active,
+  ul.social-buttons li a:focus,
+  ul.social-buttons li a:hover {
+    /* background-color: #fec503; */
+    background-color: #ed8c2f;
+  }
+  
+  ul.social-buttons li a {
+    font-size: 20px;
+    line-height: 40px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    color: #fff;
+    border-radius: 100%;
+    outline: 0;
+    background-color: #1a1d20;
+  }
+  
+  footer .quick-links {
+    font-size: 90%;
+    line-height: 40px;
+    margin-bottom: 0;
+    text-transform: none;
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  
+  .copyright {
+    color: white;
+  }
+  
+  .fa-ellipsis-h {
+    color: white;
+    padding: 2rem 0;
+  }
+  
+ 
+ 
+ 
+ 
+ 
+ /* .footer {
+     height: 80%;
+     margin-top: 10vmax;
+     padding: 2vmax;
+     background-color: rgb(34, 33, 33);
+     color: white;
+     display: flex;
+     align-items: center;
+ }
+
+ .leftFooter {
+     width: 30%;
+     display: flex;
+     margin-left: 2%;
+     flex-direction: column;
+     align-items: center;
+     font-size: small;
+ }
+
+ .leftFooter>h4 {
+     font-family: "Roboto";
+     font-size: 1vmax;
+ }
+
+ .leftFooter>p {
+     text-align: center;
+     font-size: 1vmax;
+     font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+         "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+ }
+
+ .leftFooter>img {
+     width: 10vmax;
+     margin: 1vmax;
+     cursor: pointer;
+ }
+
+ .midFooter {
+     width: 50%;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .midFooter>h1 {
+     font-size: 4vmax;
+     font-family: "Roboto";
+     color: #eb4034;
+ }
+
+ .midFooter>p {
+     max-width: 50%;
+     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+     margin: 1vmax auto;
+ }
+
+ .rightFooter {
+     width: 30%;
+     color: white;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     font-size: small;
+ }
+
+ .rightFooter>h4 {
+     font-family: "Roboto";
+     font-size: 1vmax;
+     text-decoration: underline;
+ }
+
+ .rightFooter>a {
+     text-decoration: none;
+     font-size: 1vmax;
+     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+     color: white;
+     transition: all 0.5s;
+     margin: 0.5vmax;
+ }
+
+ .rightFooter>a:hover {
+     color: #eb4034;
+ }
+
+ .block {
+     display: block;
+
+ }
+
+
+ .ft {
+     display: flex;
+     justify-content: space-evenly;
+     align-items: center;
+     width: 55%;
+
+ }
+
+ .Footer.flex.space__around.pz__15 {
+     background-color: black;
+     color: white;
+ }
+
+ h3 {
+     font-size: 1.2vmax;
+     padding: 8px 10px;
+     color: #fdfdfd;
+     transition: .4s all ease;
+ } */
