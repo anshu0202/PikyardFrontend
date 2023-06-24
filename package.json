@@ -10,6 +10,7 @@
     "@material-ui/icons": "^4.11.2",
     "@material-ui/lab": "^4.0.0-alpha.60",
     "@mui/icons-material": "^5.5.0",
+    "@mui/material": "^5.13.6",
     "@stripe/react-stripe-js": "^1.7.0",
     "@stripe/stripe-js": "^1.26.0",
     "@testing-library/jest-dom": "^5.16.2",
@@ -77,5 +78,8 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://pikyardbackend.onrender.com"
+  "proxy": "https://pikyardbackend.onrender.com",
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
+  }
 }
