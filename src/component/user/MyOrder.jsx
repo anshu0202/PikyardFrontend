@@ -18,16 +18,16 @@ const MyOrder = () => {
   const { loading, error, orders } = useSelector((state) => state.myOrder);
 
   const [order, setOrders] = useState([]);
-  // console.log("orders  --> ", orders);
+ 
   const [show, setShow] = useState(false);
   const { user } = useSelector((state) => state.user);
+   
+  console.log("order list is ", order);
 
 
-  // console.log("user is ", user);
 
 
   useEffect(() => {
-
     getOrderList();
   }, []);
 

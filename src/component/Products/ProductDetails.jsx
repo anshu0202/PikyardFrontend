@@ -57,6 +57,7 @@ const ProductDetails = ({ match, history }) => {
     if (product) {
       setCurrStock(product.Stock);
       updateProduct(product);
+
     }
   }, [product])
 
@@ -75,9 +76,7 @@ const ProductDetails = ({ match, history }) => {
     {
       isAuthenticated !== true ? history.push(`/login?redirect=/`) : <></>;
     }
-
     dispatch(newReview(myForm));
-
     {
       comment.length === 0
         ? toast.error("Please fill the comment box")
@@ -97,14 +96,9 @@ const ProductDetails = ({ match, history }) => {
   
   // getting all the variants of the product on component did mount
   useEffect(() => {  
-    dispatch(getVariants(product?.name))
+    dispatch(getVariants(product?.name));
+  }, [dispatch,product]);
   
-  }, []);
-
-
-
-
-
   const options = {
     value: product?.ratings,
     readOnly: true,
@@ -117,6 +111,8 @@ const ProductDetails = ({ match, history }) => {
 
   // Increase quantity
   const [quantity, setQuantity] = useState(1);
+
+ 
 
 
 
@@ -148,8 +144,6 @@ const ProductDetails = ({ match, history }) => {
       
 
     const id= JSON.parse(localStorage.getItem("user"))?._id
-
-
     if(id===undefined){
       toast.error("Please login to add item to cart")
       return
@@ -169,14 +163,11 @@ const ProductDetails = ({ match, history }) => {
     // console.log("product to be added ",pro);
 
     if (product.Stock > 0) {
-
       let cart = JSON.parse(localStorage.getItem('cartItems'));
-
       if(cart.length>11){
         toast.warn("Cannot save more than 10 items in Cart");
         return 
       }
-
       // dispatch(addItemsToCart(match.params.id, quantity));
       dispatch(addItemsToCart(pro));
       toast.success("Product Added to cart");
@@ -190,10 +181,12 @@ const ProductDetails = ({ match, history }) => {
     toast.success("Product Added to Favourites");
   };
 
+
+
   return (
     <>
       
-      { variants?.length===undefined || variants===undefined  ? (
+      {  variants===undefined || offerPrice===undefined || price===undefined  ? (
           
          <Loading />
       ) : (

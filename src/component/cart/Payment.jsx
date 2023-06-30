@@ -83,9 +83,6 @@ const Payment = ({ history }) => {
 
       };
 
-      // console.log("toke s ",loca)
-
-
       const { data } = await axios.post(
         "/api/v2/payment/process",
         paymentData,
@@ -93,8 +90,6 @@ const Payment = ({ history }) => {
       );
 
       const client_secret = data.client_secret;
-
-
 
       if (!stripe || !elements) return;
 

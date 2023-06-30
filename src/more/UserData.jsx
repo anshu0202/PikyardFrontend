@@ -148,7 +148,7 @@ const UserData = ({ user }) => {
       localStorage.setItem('cartItems', cart);
     
 
-    dispatch(logout());
+       dispatch(logout());
      localStorage.removeItem('user');
      toast.success("Logout Successfully");
   }
