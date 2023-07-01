@@ -1,5 +1,6 @@
 import axios from "axios";
 // const URL="http://localhost:3000/api/v2";
+import API_BASE_URL from "./api";
 
 const URL="/api/v2";
 
@@ -16,9 +17,9 @@ const userId=JSON.parse(localStorage.getItem("user"))?._id
 
 export const addToCart=async(data)=>{
     try{
-
        
         const result= await axios.post(`${URL}/addToCart`,data);
+        // const result= await axios.post(`${API_BASE_URL}${URL}/addToCart`,data);
         return result.data.cart
     }
     catch(error){
@@ -29,7 +30,8 @@ export const addToCart=async(data)=>{
 export const deleteCartItem= async(productId)=>{
             try{
                 const response=await axios.delete(`${URL}/removeCartItem/${userId}/${productId}`)
-                // console.log("reposne is ", response)
+                // const response=await axios.delete(`${API_BASE_URL}${URL}/removeCartItem/${userId}/${productId}`)
+                
                 return response;
             }
             catch(error){
@@ -41,7 +43,8 @@ export const deleteCartItem= async(productId)=>{
 export const emptyCartItem= async()=>{
     try{
         const response=await axios.delete(`${URL}/emptyCartItems/${userId}`)
-        // console.log("reposne is ", response)
+        // const response=await axios.delete(`${API_BASE_URL}${URL}/emptyCartItems/${userId}`)
+     
         return response;
     }
     catch(error){
@@ -51,7 +54,12 @@ export const emptyCartItem= async()=>{
 
 export const getCartItems= async()=>{
     try{
-        const response=await axios.get(`${URL}/cart/${userId}`)
+       
+        if(userId===undefined){
+            return []
+        }
+         const response=await axios.get(`${URL}/cart/${userId}`)
+        // const response=await axios.get(`${API_BASE_URL}${URL}/cart/${userId}`)
       
         return response.data.cartData;
     }
@@ -67,6 +75,7 @@ export const updateCartItem= async(id,quantity)=>{
     try{
         
         const result=await axios.put(`${URL}/cart/update/${id}`, data);
+        // const result=await axios.put(`${API_BASE_URL}${URL}/cart/update/${id}`, data);
       
         return result;
     }
@@ -83,7 +92,8 @@ export const updateCartItem= async(id,quantity)=>{
 export const getVariantDetail=async(name,size)=>{
     try{
         let result= await axios.get(`${URL}/variantDetail/${name}/${size}`);
-        // console.log("result is ",result.data.variant);
+        // let result= await axios.get(`${API_BASE_URL}${URL}/variantDetail/${name}/${size}`);
+        
         return result.data.variant
     }
     catch(error){
@@ -95,9 +105,8 @@ export const getVariantDetail=async(name,size)=>{
 
 export const getOrders=async()=>{
     try{
-       
         const { data } = await axios.get(`${URL}/orders/${userId}`);
-       
+        // const { data } = await axios.get(`${API_BASE_URL}${URL}/orders/${userId}`);
         return data.order
     }
     catch(error){
@@ -107,8 +116,8 @@ export const getOrders=async()=>{
 
 export const getOrder=async(id)=>{
     try{
-      
         const { data } = await axios.get(`${URL}/order/${id}`);
+        // const { data } = await axios.get(`${API_BASE_URL}${URL}/order/${id}`);
         return data.order
     }
     catch(error){

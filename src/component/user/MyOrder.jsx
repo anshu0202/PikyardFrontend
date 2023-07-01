@@ -22,7 +22,7 @@ const MyOrder = () => {
   const [show, setShow] = useState(false);
   const { user } = useSelector((state) => state.user);
    
-  console.log("order list is ", order);
+  // console.log("order list is ", order);
 
 
 
@@ -105,6 +105,7 @@ const MyOrder = () => {
 
   useEffect(() => {
     if (error) {
+      console.log("hellll")
       toast.error(error);
       dispatch(clearErrors());
     }

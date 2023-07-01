@@ -6,6 +6,8 @@ const ProtectedRoute = ({isAdmin, component: Component, ...rest}) => {
 
     const {loading, isAuthenticated, user} = useSelector((state) => state.user);
 
+    
+
     return (
        <>
         {loading === false && (

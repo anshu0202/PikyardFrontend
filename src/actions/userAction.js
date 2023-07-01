@@ -39,20 +39,45 @@ import {
 } from "../constans/userContans";
 import { addToCart, getCartItems } from "../service/cartApi";
 
+// import Cookies from 'js-cookie';
+
+import API_BASE_URL from "../service/api";
+
 // Login
+
+// const setCookie = (name, value, days) => {
+//   const expirationDate = new Date();
+//   expirationDate.setTime(expirationDate.getTime() + (days * 24 * 60 * 60 * 1000));
+//   const expires = "expires=" + expirationDate.toUTCString();
+//   document.cookie = name + "=" + value + ";" + expires + ";path=/";
+// };
+
+// Assuming you have received the token from the backend
+
+
+// Set the token in a cookie called "token" that will expire in 7 days
+
+
+
+
+
 export const login = (email, password) => async (dispatch) => {
   try {
     dispatch({ type: LOGIN_REQUEST });
 
     const config = { headers: { "Content-Type": "application/json" } };
 
+    // const { data } = await axios.post(
+    //   `${API_BASE_URL}/api/v2/login`,
+    //   { email, password },
+    //   config
+    // );
     const { data } = await axios.post(
       `/api/v2/login`,
       { email, password },
       config
     );
-
-   
+ 
     if(data){
       localStorage.setItem("user",JSON.stringify(data.user));
      
@@ -69,7 +94,7 @@ localStorage.setItem('cartItems', cart);
 
     dispatch({ type: LOGIN_SUCCESS, payload: data.user });
   } catch (error) {
-    dispatch({ type: LOGIN_FAIL, payload: error.response.data.message });
+    dispatch({ type: LOGIN_FAIL, payload: error?.response?.data?.message });
   }
 };
 
@@ -80,6 +105,7 @@ export const register = (userData) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
+    // const { data } = await axios.post(`${API_BASE_URL}/api/v2/registration`, userData, config);
     const { data } = await axios.post(`/api/v2/registration`, userData, config);
 
      
@@ -106,8 +132,8 @@ export const loadUser = () => async (dispatch) =>{
            // eslint-disable-next-line
       const config = { headers:{ "Content-Type": "application/json"} };
 
-      const {data} = await axios.get(
-          `/api/v2/me`);
+      // const {data} = await axios.get(`${API_BASE_URL}/api/v2/me`);
+      const {data} = await axios.get(`/api/v2/me`);
            
      dispatch({type: LOAD_USER_SUCCESS, payload: data.user });
   } catch (error) {  
@@ -118,7 +144,9 @@ export const loadUser = () => async (dispatch) =>{
 // Log out user
 export const logout = () => async (dispatch) =>{
   try {        
+    // await axios.get(`${API_BASE_URL}/api/v2/logout`);
     await axios.get(`/api/v2/logout`);
+  
            
     dispatch({type: LOGOUT_SUCCESS});
   } catch (error) {  
@@ -133,6 +161,7 @@ export const updateProfile = (userData) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "multipart/form-data" } };
 
+    // const { data } = await axios.put(`${API_BASE_URL}/api/v2/me/update/info`, userData, config);
     const { data } = await axios.put(`/api/v2/me/update/info`, userData, config);
 
     dispatch({ type: UPDATE_PROFILE_SUCCESS, payload: data.success });
@@ -151,6 +180,7 @@ export const updatePassword = (password) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
+    // const { data } = await axios.put(`${API_BASE_URL}/api/v2/me/update`, password, config);
     const { data } = await axios.put(`/api/v2/me/update`, password, config);
 
     dispatch({ type: UPDATE_PASSWORD_SUCCESS, payload: data.success });
@@ -166,6 +196,7 @@ export const updatePassword = (password) => async (dispatch) => {
 export const getAllUsers = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_USERS_REQUEST });
+    // const { data } = await axios.get(`${API_BASE_URL}/api/v2/admin/users`);
     const { data } = await axios.get(`/api/v2/admin/users`);
 
     dispatch({ type: ALL_USERS_SUCCESS, payload: data.users });
@@ -182,6 +213,7 @@ export const forgotPassword = (email) => async (dispatch) => {
 
     const config = { headers: { "Content-Type": "application/json" } };
 
+    // const { data } = await axios.post(`${API_BASE_URL}/api/v2/password/forgot`, email, config);
     const { data } = await axios.post(`/api/v2/password/forgot`, email, config);
 
     dispatch({ type: FORGOT_PASSWORD_SUCCESS, payload: data.message });
@@ -200,6 +232,12 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
     dispatch({ type: RESET_PASSWORD_REQUEST });
 
     const config = { headers: { "Content-Type": "application/json" } };
+
+    // const { data } = await axios.put(
+    //   `${API_BASE_URL}/api/v2/password/reset/${token}`,
+    //   passwords,
+    //   config
+    // );
 
     const { data } = await axios.put(
       `/api/v2/password/reset/${token}`,
@@ -222,6 +260,7 @@ export const deleteUser = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_USER_REQUEST });
 
+    // const { data } = await axios.delete(`${API_BASE_URL}/api/v2/admin/user/${id}`);
     const { data } = await axios.delete(`/api/v2/admin/user/${id}`);
 
     dispatch({ type: DELETE_USER_SUCCESS, payload: data });
@@ -237,6 +276,7 @@ export const deleteUser = (id) => async (dispatch) => {
 export const getUserDetails = (id) => async (dispatch) => {
   try {
     dispatch({ type: USER_DETAILS_REQUEST });
+    // const { data } = await axios.get(`${API_BASE_URL}/api/v2/admin/user/${id}`);
     const { data } = await axios.get(`/api/v2/admin/user/${id}`);
 
     dispatch({ type: USER_DETAILS_SUCCESS, payload: data.user });
@@ -253,6 +293,11 @@ export function updateUser(id, userData) {
 
       const config = { headers: { "Content-Type": "application/json" } };
 
+      // const { data } = await axios.put(
+      //   `${API_BASE_URL}/api/v2/admin/user/${id}`,
+      //   userData,
+      //   config
+      // );
       const { data } = await axios.put(
         `/api/v2/admin/user/${id}`,
         userData,

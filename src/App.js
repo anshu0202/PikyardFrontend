@@ -46,6 +46,8 @@ import ForgotPassword from "./component/user/ForgotPassword";
 import ResetPassword from "./component/user/ResetPassword";
 import Notfound from "./more/Notfound";
 
+import API_BASE_URL from './service/api';
+
 function App() {
 
   const {isAuthenticated,user} = useSelector((state) =>state.user);
@@ -53,7 +55,8 @@ function App() {
   const [stripeApiKey, setStripeApiKey] = useState("");
 
   async function getStripeApiKey() {
-    const { data } = await axios.get("/api/v2/stripeapikey");
+    // const { data } = await axios.get(`${API_BASE_URL}/api/v2/stripeapikey`);
+    const { data } = await axios.get(`/api/v2/stripeapikey`);
 
     setStripeApiKey(data.stripeApiKey);
   }

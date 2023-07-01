@@ -1,9 +1,11 @@
 import { ADD_TO_FAVOURITE, ADD_TO_FAVOURITE_OFFER, REMOVE_FROM_FAVOURITE, REMOVE_FROM_FAVOURITE_OFFER}
 from "../constans/FavouriteConstans";
 import axios from "axios";
+import API_BASE_URL from "../service/api";
 
 // Add to favourites
 export const addFavouriteItemsToCart = (id,quantity) => async (dispatch, getState) =>{
+    // const {data} = await axios.get(`${API_BASE_URL}/api/v2/product/${id}`);
     const {data} = await axios.get(`/api/v2/product/${id}`);
 
     dispatch({

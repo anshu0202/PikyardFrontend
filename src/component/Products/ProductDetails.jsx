@@ -186,7 +186,7 @@ const ProductDetails = ({ match, history }) => {
   return (
     <>
       
-      {  variants===undefined || offerPrice===undefined || price===undefined  ? (
+      {  variants===undefined || product===undefined || offerPrice===undefined ? (
           
          <Loading />
       ) : (

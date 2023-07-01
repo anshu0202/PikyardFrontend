@@ -20,6 +20,7 @@ import {
   UPDATE_ORDER_SUCCESS,
 } from "../constans/OrderConstans";
 import { CLEAR_ERRORS } from "../constans/userContans";
+import API_BASE_URL from "../service/api";
 
 // Create Order
 export const createOrder = (order) => async (dispatch) => {
@@ -34,7 +35,8 @@ export const createOrder = (order) => async (dispatch) => {
 
 
 
-    const { data } = await axios.post("/api/v2/order/new", order, config);
+    // const { data } = await axios.post(`${API_BASE_URL}/api/v2/order/new`, order, config);
+    const { data } = await axios.post(`/api/v2/order/new`, order, config);
 
  
 
@@ -53,11 +55,18 @@ export const createOrder = (order) => async (dispatch) => {
 export const myOrders = () => async (dispatch) => {
     try {
       dispatch({ type: MY_ORDERS_REQUEST });
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
   
-      const { data } = await axios.get("/api/v2/orders/me");
+      // const { data } = await axios.get(`${API_BASE_URL}/api/v2/orders/me`);
+      const { data } = await axios.get(`/api/v2/orders/me`);
   
       dispatch({ type: MY_ORDERS_SUCCESS, payload: data.orders });
     } catch (error) {
+      console.log("error is ",error.message)
       dispatch({
         type: MY_ORDERS_FAIL,
         payload: error.response.data.message,
@@ -72,6 +81,7 @@ export const getOrderDetails = (id) => async (dispatch) => {
     try {
       dispatch({ type: ORDER_DETAILS_REQUEST });
   
+      // const { data } = await axios.get(`${API_BASE_URL}/api/v2/order/${id}`);
       const { data } = await axios.get(`/api/v2/order/${id}`);
 
       
@@ -91,7 +101,8 @@ export const getAllOrders = () => async (dispatch) => {
   try {
     dispatch({ type: ALL_ORDERS_REQUEST });
 
-    const { data } = await axios.get("/api/v2/admin/orders");
+    // const { data } = await axios.get(`${API_BASE_URL}/api/v2/admin/orders`);
+    const { data } = await axios.get(`/api/v2/admin/orders`);
 
     dispatch({ type: ALL_ORDERS_SUCCESS, payload: data.orders });
   } catch (error) {
@@ -112,11 +123,17 @@ export const updateOrder = (id, order) => async (dispatch) => {
         "Content-Type": "application/json",
       },
     };
-    const { data } = await axios.put(
+    // const { data } = await axios.put(
+    //   `${API_BASE_URL}/api/v2/admin/order/${id}`,
+    //   order,
+    //   config
+    // );
+      const { data } = await axios.put(
       `/api/v2/admin/order/${id}`,
       order,
       config
     );
+
 
     dispatch({ type: UPDATE_ORDER_SUCCESS, payload: data.success });
   } catch (error) {
@@ -132,6 +149,7 @@ export const deleteOrder = (id) => async (dispatch) => {
   try {
     dispatch({ type: DELETE_ORDER_REQUEST });
 
+    // const { data } = await axios.delete(`${API_BASE_URL}/api/v2/admin/order/${id}`);
     const { data } = await axios.delete(`/api/v2/admin/order/${id}`);
 
     dispatch({ type: DELETE_ORDER_SUCCESS, payload: data.success });

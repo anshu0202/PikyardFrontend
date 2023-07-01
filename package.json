@@ -66,6 +66,7 @@
       "react-app/jest"
     ]
   },
+  "proxy":"http://localhost:4000",
   "browserslist": {
     "production": [
       ">0.2%",
@@ -78,7 +79,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://pikyardbackend.onrender.com",
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11"
   }

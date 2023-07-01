@@ -20,6 +20,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loading from "../../more/Loader";
 import { getCartItems } from "../../service/cartApi";
+import API_BASE_URL from "../../service/api";
 
 const Payment = ({ history }) => {
   const orderInfo = JSON.parse(localStorage.getItem("orderInfo"));
@@ -44,16 +45,12 @@ const Payment = ({ history }) => {
   let cartItems2 = JSON.parse(localStorage.getItem('cartItems'));
 
   useEffect(() => {
+    console.log("heelo from payment")
     getCartItem();
   }, []);
 
-  const getCartItem = async () => {
-    // const data = await getCartItems();
-    
-    
+  const getCartItem = async () => { 
     const data= cartItems2;
-    // console.log("data  ",cartItems2);
-
     if (data) {
       setCartItems(data);
     }
@@ -83,8 +80,13 @@ const Payment = ({ history }) => {
 
       };
 
+      // const { data } = await axios.post(
+      //   `${API_BASE_URL}/api/v2/payment/process`,
+      //   paymentData,
+      //   config
+      // );
       const { data } = await axios.post(
-        "/api/v2/payment/process",
+        `/api/v2/payment/process`,
         paymentData,
         config
       );
